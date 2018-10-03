@@ -1,0 +1,106 @@
+﻿@model ICDC_Portal.Models.ICDC_Applicants_Register
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <img src="/siteimages/icdclogo.png"/>
+                        <a href="@Url.Action("SaveUserAccountDetails", "UserRegistration")">Create Account</a>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2">
+                        @Html.AntiForgeryToken()
+                        @if (TempData["red"] != null)
+                        {
+                            <span id="message" style="font-weight: bold; color: red">
+                                @TempData["red"]
+                            </span>
+                        }
+                        @*<form role="form" Method="POST">
+                            <fieldset>*@
+                            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        @*<input class="form-control" placeholder="Username" name="username" type="text" autofocus>*@
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        @Html.TextBoxFor(m => m.Username, "", new { @class = "form-control", @placeholder = "Username" })<br />
+                                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "error" })
+                                    </div>   
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        @*<input class="form-control" placeholder="Password" name="password" type="password" value="">*@
+                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })<br />
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                                    </div>  
+                                </div>
+                                
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="rememberme" type="checkbox" value="Remember Me" id="rememberme">Remember Me
+                                    </label>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="submit" value="Login" class="btn btn-primary fa fa-sign-in"/>
+                                </div>
+
+                                <div id="loginmessage"></div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                @*<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>*@
+                            @*</fieldset>
+                        </form>*@
+                           }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script>
+    //$(document).ready(function () {
+    //    $("#loginBTN").click(function () {
+    //        //e.preventDefault();
+    //        LoginUser();
+            
+    //    });
+    //});
+
+    //function LoginUser() {
+
+    //    $.ajax(
+    //    {
+    //        type: 'POST', //HTTP POST Method
+    //        url: 'Login',//Controller/view
+    //        contentType: 'application/json; charset=utf-8',//data: jsonData
+    //        data:{
+    //            //Passing data
+    //            Username: $("#username").val(),
+    //            Password: $("#password").val()
+    //        },
+    //        dataType: 'json'
+    //        // ,
+    //        //success: function () {
+    //        //    alert("clicked");
+    //        //    }
+
+    //    });
+       
+    //
+</script>

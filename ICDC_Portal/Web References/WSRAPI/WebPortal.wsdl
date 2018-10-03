@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/WebPortal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/WebPortal" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/WebPortal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="FnCreateApplicants">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fname" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="mname" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lname" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="activationCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FnCreateApplicants_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FnActivateAc">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="activationCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FnActivateAc_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="FnCreateApplicants">
+    <part name="parameters" element="tns:FnCreateApplicants" />
+  </message>
+  <message name="FnCreateApplicants_Result">
+    <part name="parameters" element="tns:FnCreateApplicants_Result" />
+  </message>
+  <message name="FnActivateAc">
+    <part name="parameters" element="tns:FnActivateAc" />
+  </message>
+  <message name="FnActivateAc_Result">
+    <part name="parameters" element="tns:FnActivateAc_Result" />
+  </message>
+  <portType name="WebPortal_Port">
+    <operation name="FnCreateApplicants">
+      <input name="FnCreateApplicants" message="tns:FnCreateApplicants" />
+      <output name="FnCreateApplicants_Result" message="tns:FnCreateApplicants_Result" />
+    </operation>
+    <operation name="FnActivateAc">
+      <input name="FnActivateAc" message="tns:FnActivateAc" />
+      <output name="FnActivateAc_Result" message="tns:FnActivateAc_Result" />
+    </operation>
+  </portType>
+  <binding name="WebPortal_Binding" type="tns:WebPortal_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="FnCreateApplicants">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/WebPortal:FnCreateApplicants" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FnCreateApplicants">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FnCreateApplicants_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="FnActivateAc">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/WebPortal:FnActivateAc" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FnActivateAc">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FnActivateAc_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="WebPortal">
+    <port name="WebPortal_Port" binding="tns:WebPortal_Binding">
+      <address location="http://sngutu:7047/DynamicsNAV110/WS/ICDC/Codeunit/WebPortal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

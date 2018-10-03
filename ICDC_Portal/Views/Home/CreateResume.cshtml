@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ICDC_Portal.OData.applicantsRegister>
+
+@{
+    ViewBag.Title = "Create Resume";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+<div class="row">
+    <h2>Create a Resume</h2>
+    @foreach (var item in Model)
+    {
+        <div class="form-group">
+            <label class="col-md-3 control-label">First Name:</label>
+            <div class="col-md-6">
+                @Html.DisplayFor(modelItem => item.First_Name);
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Middle Name:</label>
+            <div class="col-md-6">
+                @Html.DisplayFor(modelItem => item.Middle_Name);
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Surname:</label>
+            <div class="col-md-6">
+                @Html.DisplayFor(modelItem => item.Last_Name);
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Email Address:</label>
+            <div class="col-md-6">
+                @Html.DisplayFor(modelItem => item.Email);
+            </div>
+        </div>
+    }
+
+    <form role="form" method="POST">
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id No:</label>
+            <div class="col-md-6 input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input class="form-control" id="IdNumber" name="IdNumber" placeholder="Enter Your ID Number" type="text">
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>
+</div>
+
+

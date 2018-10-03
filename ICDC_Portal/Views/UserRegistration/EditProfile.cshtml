@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "SaveUserAccountDetails";
+    Layout = "~/Views/Shared/_General_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    @if (TempData["Success"] != null)
+                    {
+                        <span id="message" style="font-weight: bold; color: green">
+                            @TempData["Success"]
+                        </span>
+                    }
+                    else
+                    {
+                        <span id="message" style="font-weight: bold; color: red">
+                            @TempData["Failed"]
+                        </span>
+                    }
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+
+                    <form role="form" method="POST">
+                        <div class="panel-heading">
+                            <b> Submit the following details to create an account</b>
+                        </div><br />
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">First Name:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input class="form-control" id="FirstName" name="FirstName" placeholder="Enter Your First name" type="text">
+                            </div>
+                            <div class="col-md-3"><span id="fnameError" style="color: red"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Middle Name:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input class="form-control" id="MiddleName" name="MiddleName" placeholder="Enter Your Middle name" type="text">
+                            </div>
+                            <div class="col-md-3"><span id="mnameError" style="color: red"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Last Name:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input class="form-control" id="LastName" name="LastName" placeholder="Enter Your Last name" type="text">
+                            </div>
+                            <div class="col-md-3"><span id="lnameError" style="color: red"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Email Address:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-at" aria-hidden="true"></i></span>
+                                <input class="form-control" id="eMail" name="eMail" placeholder="Enter Your Email" type="email">
+                            </div>
+                            <div class="col-md-3"><span id="eMailError" style="color: red"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Username:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                <input class="form-control" id="username" name="username" placeholder="Create username" type="text">
+                            </div>
+                            <div class="col-md-3"><span id="usernameError" style="color: red;"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Password:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                <input class="form-control" id="password1" name="password1" placeholder="Create Password" type="password">
+                            </div>
+                            <div class="col-md-3"><span id="password1Error" style="color: red"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                <label class="control-label">Re-Enter Password:</label>
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                <input class="form-control" id="password2" name="password2" placeholder="Confirm Password" type="password">
+                            </div>
+                            <div class="col-md-3"><span id="password2Error" style="color: red"></span></div>
+                        </div>
+
+                        @*<div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:8" data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                                <div class="help-block with-errors"></div>
+                            </div>*@
+
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                            </div>
+                            <div class="col-md-6 input-group">
+                                <button class="btn btn-primary fa fa-user-plus" id="CreateAcc"> Create Account</button>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#CreateAcc").click(function (e) {
+            //e.preventDefault();
+            if ($("#FirstName").val() == "") {
+                $("#fnameError").html("Firstname Required!");
+               // alert("There is no value in textbox");
+            }
+            else if ($("#MiddleName").val() == "") {
+                $("#mnameError").html("Middle Required!");
+                // alert("There is no value in textbox");
+            }
+            else if ($("#LastName").val() == "") {
+                $("#lnameError").html("Lastname Required!");
+                // alert("There is no value in textbox");
+            }
+            else if ($("#eMail").val() == "") {
+                $("#eMailError").html("Email Required!");
+                // alert("There is no value in textbox");
+            } else {
+                RegisterUser();
+            }
+        });
+    });
+
+    function RegisterUser() {
+
+        $.ajax(
+        {
+            type: 'POST', //HTTP POST Method
+            url: 'SaveUserAccountDetails',//Controller/view
+            contentType: 'application/json; charset=utf-8',//data: jsonData
+            data:{
+                //Passing data
+                FirstName: $("#FirstName").val(),
+                MiddleName: $("#MiddleName").val(),
+                LastName: $("#LastName").val(),
+                Email: $("#eMail").val(),
+                UserName: $("#username").val(),
+                Password1: $("#password1").val(),
+                Password2: $("#password2").val()
+            },
+            dataType: 'json'
+
+            // ,
+            //success: function (status) {
+            //    if (status == true) {
+            //        alert("Account created successfully!");
+            //    } else {
+            //        alert("Error Occured!");
+            //    }
+
+            //}
+
+        });
+    }
+
+</script>

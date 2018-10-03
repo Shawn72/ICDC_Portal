@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ICDC_Portal.OData.applicantsRegister>
+
+
+@foreach (var item in Model)
+{
+    <table class="table table-bordered table-condensed table-striped" style="font-family:Trebuchet MS">
+        <tr>
+            <th colspan="2" style="font-size: large"><i class="glyphicon glyphicon-education"></i> Education Information</th>
+        </tr>
+        <tr>
+            <td>First Name: </td>
+            <td> @Html.DisplayFor(modelItem => item.First_Name)</td>
+        </tr>
+        <tr>
+            <td>Middle Name:</td>
+            <td>@Html.DisplayFor(modelItem => item.Middle_Name)</td>
+        </tr>
+
+        <tr>
+            <td>Last Name: </td>
+            <td>@Html.DisplayFor(modelItem => item.Last_Name)</td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+        </tr>
+    </table>
+
+}
+
+
